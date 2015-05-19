@@ -160,7 +160,7 @@
 		 *
 		 * @restrict A
 		 */
-			.directive('amTimeAgo', ['$window', 'moment', 'amMoment', 'amTimeAgoConfig', 'angularMomentConfig', function ($window, moment, amMoment, amTimeAgoConfig, angularMomentConfig) {
+			.directive('amTimeAgo', ['$window', 'moment', 'amMoment', 'amTimeAgoConfig', 'angularMomentConfig', '$rootScope', function ($window, moment, amMoment, amTimeAgoConfig, angularMomentConfig, $rootScope) {
 
 				return function (scope, element, attr) {
 					var activeTimeout = null;
@@ -294,6 +294,10 @@
 					});
 
 					scope.$on('amMoment:localeChanged', function () {
+						updateMoment();
+					});
+					$rootScope.$on('amMoment:localeChanged', function () {
+						console.log('helloo');
 						updateMoment();
 					});
 				};
